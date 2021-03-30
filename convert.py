@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import json
 import time
 import datetime
@@ -5,7 +6,8 @@ import argparse
 import sys
 
 parser = argparse.ArgumentParser()
-parser.add_argument("file", help="exported from Telegram Json File")
+parser.add_argument("--file", help="exported from Telegram Json File", required=True)
+parser.add_argument("--slack_chat_name", help="name for the Slack chat", required=True)
 args = parser.parse_args()
 
 if len(sys.argv) == 1:
@@ -15,7 +17,7 @@ if len(sys.argv) == 1:
 result = []
 with open(args.file) as json_file:
     data = json.load(json_file)
-    channel = data['name']
+    channel = args.slack_chat_name
     messages = data['messages']
     for msg in messages:
         __date = int(time.mktime(
