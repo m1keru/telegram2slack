@@ -31,4 +31,4 @@ with open(args.file) as json_file:
         except KeyError as e:
             __text = 'No text'
         #result.append([date, channel, _from, msg['text']])
-        print("\"%s\"|\"%s\"|\"%s\"|\"%s\"" % (__date, channel, __from, __text ))
+        print("\"%s\"|\"%s\"|\"%s\"|\"%s\"" % (__date, channel, __from, str(__text).replace('\n', ' ').replace('\r', '') ))
